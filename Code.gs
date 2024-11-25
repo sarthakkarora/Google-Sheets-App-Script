@@ -56,8 +56,8 @@ function validateSheet() {
     const companyCriteria = fetchCompanyCriteria(rows[i][6]);
     const eligibility = isEligibleForCompany(companyCriteria, studentData);
 
-    rows[i][lastCol - 2] = eligibility[0] ? "Eligible" : "Not Eligible"; // Eligibility Status
-    rows[i][lastCol - 1] = eligibility[1]; // Eligibility Message
+    rows[i][lastCol - 2] = eligibility[0] ? "Eligible" : "Not Eligible"; 
+    rows[i][lastCol - 1] = eligibility[1]; 
   }
 
   sheet.getDataRange().setValues(rows);
@@ -110,7 +110,7 @@ function setup() {
     sheet.getRange(1, headers.length + 2).setValue("Eligibility Message");
   }
 
-  // Setup Company Criteria Sheet
+
   const criteriaSheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("CompanyCriteria") || 
                         SpreadsheetApp.getActiveSpreadsheet().insertSheet("CompanyCriteria");
 
@@ -134,15 +134,16 @@ function applyConditionalFormatting() {
   rules.push(
     SpreadsheetApp.newConditionalFormatRule()
       .whenTextEqualTo("Eligible")
-      .setBackground("#C8E6C9") // Light green for eligible
+      .setBackground("#C8E6C9") 
       .setRanges([range])
       .build(),
     SpreadsheetApp.newConditionalFormatRule()
       .whenTextEqualTo("Not Eligible")
-      .setBackground("#FFCDD2") // Light red for not eligible
+      .setBackground("#FFCDD2") 
       .setRanges([range])
       .build()
   );
+
 
   sheet.setConditionalFormatRules(rules);
 }
